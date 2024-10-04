@@ -63,7 +63,7 @@ class Student_Serializer(serializers.ModelSerializer):
         send_mail(
             'Your OTP Code',
             plain_message,
-            'openacademy44@gmail.com',  # Replace with your email
+            'nutriscanofficial@gmail.com',  # Replace with your email
             [validated_data['email']],
             fail_silently=False,
             html_message=html_message,
