@@ -12,6 +12,7 @@ urlpatterns = [
     path('api/user/',include('user_profile.urls')),
     path('api/user/',include('testimonials.urls')),
     path('api/',include('questions.urls')),
+    path('api/',include('request_session.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

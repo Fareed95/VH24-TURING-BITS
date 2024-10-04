@@ -1,17 +1,11 @@
 import os
-import time
 from datetime import datetime
 from pydub import AudioSegment
 import speech_recognition as sr
-from watchdog.observers import Observer
-from watchdog.events import FileSystemEventHandler
 
 # -------------------- Configuration --------------------
 
-MP3_FOLDER = "mp3_files"
 WAV_FOLDER = "wav_files"
-
-os.makedirs(MP3_FOLDER, exist_ok=True)
 os.makedirs(WAV_FOLDER, exist_ok=True)
 
 # Abusive words
@@ -58,7 +52,20 @@ def find_abusive_words(text):
 
     return timestamps
 
-def process_wav_file(wav_path):
+def process_audio(mp3_path):
+    # Convert MP3 to WAV
+    filename = os.path.basename(mp3_path)
+    name, _ = os.path.splitext(filename)
+
+    # Create a timestamped filename for the WAV file
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    wav_filename = f"{name}_{timestamp}.wav"
+    wav_path = os.path.join(WAV_FOLDER, wav_filename)
+
+    # Convert MP3 to WAV
+    convert_mp3_to_wav(mp3_path, wav_path)
+
+    # Process the WAV file
     print(f"Processing '{wav_path}'")
     transcribed_text = transcribe_audio(wav_path)
     if not transcribed_text:
@@ -76,53 +83,4 @@ def process_wav_file(wav_path):
         timestamp = index * time_per_word
         print(f"Abusive word '{word}' found at {timestamp:.2f} seconds.")
 
-# -------------------- Directory Monitoring --------------------
-
-class MP3Handler(FileSystemEventHandler):
-    def on_created(self, event):
-        # Ignore directories
-        if event.is_directory:
-            return
-
-        # Process only .mp3 files
-        if event.src_path.lower().endswith('.mp3'):
-            mp3_path = event.src_path
-            filename = os.path.basename(mp3_path)
-            name, _ = os.path.splitext(filename)
-
-            # Create a timestamped filename for the WAV file
-            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-            wav_filename = f"{name}_{timestamp}.wav"
-            wav_path = os.path.join(WAV_FOLDER, wav_filename)
-
-            # Convert MP3 to WAV
-            convert_mp3_to_wav(mp3_path, wav_path)
-
-            # Optionally, remove or move the processed MP3 file
-            # os.remove(mp3_path)  # Uncomment to delete after processing
-
-            # Process the WAV file
-            process_wav_file(wav_path)
-
-def monitor_folder():
-    event_handler = MP3Handler()
-    observer = Observer()
-    observer.schedule(event_handler, path=MP3_FOLDER, recursive=False)
-    observer.start()
-    print(f"Monitoring '{MP3_FOLDER}' for new MP3 files...")
-
-    try:
-        while True:
-            time.sleep(1)  # Keep the script running
-    except KeyboardInterrupt:
-        observer.stop()
-        print("Stopping folder monitoring.")
-    observer.join()
-
-# -------------------- Main Execution --------------------
-
-if __name__ == "__main__":
-    monitor_folder()
-
-
-
+    return abusive_timestamps, transcribed_text
