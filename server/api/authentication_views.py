@@ -15,6 +15,8 @@ from django.utils.crypto import get_random_string
 from django.core.cache import cache
 import ssl
 import requests
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 
 # Disable SSL verification
 ssl._create_default_https_context = ssl._create_unverified_context
@@ -39,6 +41,20 @@ class RegisterView(APIView):
             user.otp = None
             user.otp_expiration = None
             user.save()
+            otp = get_random_string(length=6, allowed_chars='0123456789')
+            cache.set(f'otp_{email}', otp, timeout=300)  # OTP valid for 5 minutes
+            html_message = render_to_string('emails/welcome_email.html', {'name': user.name})  # Using the 'name' field
+            plain_message = strip_tags(html_message)
+
+            send_mail(
+                'Welcome to Open Academy',
+                plain_message,
+                'openacademy44@gmail.com',  # Replace with your email
+                [email],
+                fail_silently=False,
+                html_message=html_message,
+            )
+
             return Response({'message': 'User verified successfully'})
         else:
             return Response({'error': 'Invalid OTP or OTP expired'}, status=status.HTTP_400_BAD_REQUEST)
@@ -107,13 +123,17 @@ class PasswordResetRequestView(APIView):
         otp = get_random_string(length=6, allowed_chars='0123456789')
         cache.set(f'otp_{email}', otp, timeout=300)  # OTP valid for 5 minutes
 
+        html_message = render_to_string('emails/password_update_email.html', {'name': user.name})
+        plain_message = strip_tags(html_message)
+
         send_mail(
-            'Password Reset OTP',
-            f'Your OTP for password reset is {otp}.',
-            'nutriscanofficial@gmail.com',
-            [email],
-            fail_silently=False,
-        )
+                'Password Updated Successfully',
+                plain_message,
+                'openacademy44@gmail.com',  # Replace with your email
+                [user.email],
+                fail_silently=False,
+                html_message=html_message,
+            )
         return Response({"message": "OTP sent to your email."}, status=status.HTTP_200_OK)
 
 

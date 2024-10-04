@@ -22,16 +22,13 @@ DEBUG = os.getenv('DJANGO_DEBUG', 'False') == 'True'
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
-    'nutriscan-1ahz.onrender.com'
     ]
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    "https://nutriscann.vercel.app",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000",
-    "https://nutriscann.vercel.app",
 ]
 
 CORS_ALLOW_CREDENTIALS = True
@@ -48,8 +45,6 @@ INSTALLED_APPS = [
     'user_profile',
     'rest_framework',
     'corsheaders',
-    'disease_algorithm',
-    'videocall'
 ]
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -144,11 +139,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-#  Managing media directory 
+#  Managing media directory
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-#  Authentication 
+#  Authentication
 AUTH_USER_MODEL = 'api.User'
 
 
