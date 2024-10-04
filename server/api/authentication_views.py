@@ -9,7 +9,7 @@ import jwt
 import datetime
 from django.utils import timezone
 from .models import User
-from .authenticationserializer import UserSerializer,PasswordResetRequestSerializer,PasswordResetSerializer
+from .authenticationserializer import Student_Serializer,Trainer_Serializer,PasswordResetRequestSerializer,PasswordResetSerializer
 from django.core.mail import send_mail
 from django.utils.crypto import get_random_string
 from django.core.cache import cache
@@ -20,10 +20,48 @@ from django.utils.html import strip_tags
 
 # Disable SSL verification
 ssl._create_default_https_context = ssl._create_unverified_context
-class RegisterView(APIView):
+class StudentRegisterView(APIView):
     @csrf_exempt
     def post(self, request):
-        serializer = UserSerializer(data=request.data)
+        serializer = Student_Serializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'message': 'OTP sent to your email. Please verify to complete registration.'})
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    @csrf_exempt
+    def put(self, request):
+        email = request.data.get('email')
+        otp = request.data.get('otp')
+        user = User.objects.filter(email=email).first()
+
+        if user and user.otp == otp and user.otp_expiration > timezone.now():
+            user.is_active = True
+            user.otp = None
+            user.otp_expiration = None
+            user.save()
+            otp = get_random_string(length=6, allowed_chars='0123456789')
+            cache.set(f'otp_{email}', otp, timeout=300)  # OTP valid for 5 minutes
+            html_message = render_to_string('emails/welcome_email.html', {'name': user.name})  # Using the 'name' field
+            plain_message = strip_tags(html_message)
+
+            send_mail(
+                'Welcome to Open Academy',
+                plain_message,
+                'openacademy44@gmail.com',  # Replace with your email
+                [email],
+                fail_silently=False,
+                html_message=html_message,
+            )
+
+            return Response({'message': 'User verified successfully'})
+        else:
+            return Response({'error': 'Invalid OTP or OTP expired'}, status=status.HTTP_400_BAD_REQUEST)
+class TrainerRegisterView(APIView):
+    @csrf_exempt
+    def post(self, request):
+        serializer = Trainer_Serializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response({'message': 'OTP sent to your email. Please verify to complete registration.'})

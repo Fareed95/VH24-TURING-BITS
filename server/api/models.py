@@ -29,6 +29,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)  # Default to True for active users
     is_staff = models.BooleanField(default=False)  # Add is_staff field if missing
     date_joined = models.DateTimeField(default=timezone.now)  # Add this line
+    trainer = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
