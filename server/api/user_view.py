@@ -30,7 +30,7 @@ class UserView(APIView):
             raise AuthenticationFailed('User not found!')
 
         # Check if the user is a trainer
-        if user.is_trainer:
+        if user.trainer:
             serializer = Trainer_Serializer(user)
         else:
             serializer = Student_Serializer(user)

@@ -10,6 +10,7 @@ from user_profile.serializers import User_profile_serializer
 from testimonials.serializers import testimonial_serializer
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
+from questions.serializers import questions_serializer
 
 
 class Student_Serializer(serializers.ModelSerializer):
@@ -18,6 +19,7 @@ class Student_Serializer(serializers.ModelSerializer):
     botresponse = BotResponseSerializer(many = True, read_only = True)
     user_profile = User_profile_serializer(many = True,read_only = True )
     review = testimonial_serializer(many= True, read_only = True)
+    questions = questions_serializer(many = True,read_only = True)
     class Meta:
         model = User
         fields = [
@@ -26,10 +28,11 @@ class Student_Serializer(serializers.ModelSerializer):
             'password',
             'confirm_password',
             'otp',
-            'trainer'
+            'trainer',
             'botresponse',
             'user_profile',
             'review',
+            'questions'
             ]
         extra_kwargs = {
             'password': {'write_only': True},
@@ -84,6 +87,7 @@ class Trainer_Serializer(serializers.ModelSerializer):
             'botresponse',
             'user_profile',
             'review',
+            'domain'
             ]
         extra_kwargs = {
             'password': {'write_only': True},

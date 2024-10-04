@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'user_profile',
     'rest_framework',
     'corsheaders',
+    'questions'
 ]
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
