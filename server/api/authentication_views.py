@@ -49,7 +49,7 @@ class StudentRegisterView(APIView):
             send_mail(
                 'Welcome to Open Academy',
                 plain_message,
-                'nutriscanofficial@gmail.com',  # Replace with your email
+                'fareedsayedprsnl@gmail.com',  # Replace with your email
                 [email],
                 fail_silently=False,
                 html_message=html_message,
@@ -87,7 +87,7 @@ class TrainerRegisterView(APIView):
             send_mail(
                 'Welcome to Open Academy',
                 plain_message,
-                'nutriscanofficial@gmail.com',  # Replace with your email
+                'fareedsayedprsnl@gmail.com',  # Replace with your email
                 [email],
                 fail_silently=False,
                 html_message=html_message,
