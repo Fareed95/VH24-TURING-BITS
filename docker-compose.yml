@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  nextjs:
+    build:
+      context: ./client
+    ports:
+      - "3000:3000"  # For frontend
+      # - "7500:7500"  # For backend
+    volumes:
+      - ./client:/app
+    stdin_open: true
+    tty: true
+    restart: always
+    networks:
+      - nutri-scan
+    command: ["sh", "-c", "npm run dev"]
+    # healthcheck:
+    #   test: ["CMD", "curl", "-f", "http://localhost:7500"]
+    #   interval: 10s
+    #   timeout: 5s
+    #   retries: 5
+
+  django:
+    build:
+      context: ./server
+    container_name: django_server
+    command: ["gunicorn", "server.wsgi:application", "--bind", "0.0.0.0:8000"]
+    volumes:
+      - ./server:/app
+    ports:
+      - "8000:8000"
+    networks:
+      - nutri-scan
+    depends_on:
+      - nextjs
+
+networks:
+  nutri-scan:
+    driver: bridge
