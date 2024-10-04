@@ -4,22 +4,6 @@ from .managers import CustomUserManager
 from django.utils import timezone
 # Create your models here.
 
-
-
-class FoodTesting_Scan_Image(models.Model):
-    testing_id = models.AutoField(primary_key=True)
-    scan_image = models.ImageField(upload_to='foodscan/')
-
-
-    def __str__(self) :
-        return self.testing_id
-
-
-
-class FoodTesting_Scan_text(models.Model):
-    testing_id = models.AutoField(primary_key=True)
-    scan_text = models.TextField()
-
 class User(AbstractBaseUser, PermissionsMixin):
     name = models.CharField(max_length=50)
     email = models.EmailField(max_length=254, unique=True)
@@ -30,6 +14,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)  # Add is_staff field if missing
     date_joined = models.DateTimeField(default=timezone.now)  # Add this line
     trainer = models.BooleanField(default=False)
+    domain = models.CharField( max_length=50, null =True, blank=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
