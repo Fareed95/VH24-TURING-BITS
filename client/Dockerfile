@@ -14,10 +14,12 @@ RUN npm install
 RUN npm install -g next
 
 # Install nodemon globally
+
 # RUN npm install -g nodemon
 
 # Install concurrently for running multiple commands
 # RUN npm install -g concurrently
+
 
 # Copy the rest of the application code
 COPY . .
@@ -27,4 +29,6 @@ EXPOSE 3000
 EXPOSE 7500
 
 # Use concurrently to run both npm commands
+
 CMD ["npm","run","dev"]
+
