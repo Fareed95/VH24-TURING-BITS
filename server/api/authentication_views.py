@@ -117,6 +117,7 @@ class LoginView(APIView):
 
         payload = {
             'id': user.id,
+            'trainer': user.trainer,  # Include trainer field
             'exp': datetime.datetime.utcnow() + datetime.timedelta(days=7),
             'iat': datetime.datetime.utcnow()
         }
@@ -125,7 +126,8 @@ class LoginView(APIView):
 
         response = Response()
         response.data = {
-            'jwt': token  # No "Bearer" prefix
+            'jwt': token ,# No "Bearer" prefix
+            'trainer': user.trainer,  # Include trainer field
         }
 
         return response
