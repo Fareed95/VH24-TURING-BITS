@@ -5,9 +5,9 @@ from rest_framework.response import Response
 from rest_framework.exceptions import AuthenticationFailed
 import jwt
 from jwt.exceptions import ExpiredSignatureError
-
 from .models import User
 from .authenticationserializer import Student_Serializer, Trainer_Serializer
+from rest_framework import status
 
 class UserView(APIView):
     @method_decorator(csrf_exempt)
