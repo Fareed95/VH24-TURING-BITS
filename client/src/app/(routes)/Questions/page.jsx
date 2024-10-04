@@ -20,8 +20,10 @@ function Page() {
 
   return (
     <div className='flex items-center flex-col '>
-      {/* Question input */}
-      <div className='flex justify-evenly'>
+      <p className="text-6xl lg:text-7xl font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-600 py-4 sm:pb-4 pt-[20vh]">
+        Ask A Question
+      </p>
+      <div className='flex '>
       <LabelInputContainer className="w-[40vw] ">
             
             <Input
