@@ -1,2 +1,4 @@
 # VH24-TURING-BITS
 Problem Statement  Education: School, the Unschooled.
+
+There are thousands of school students who aspire to be doctors or engineers every year. As they prepare for NEET/JEE/CET, they lack proper resources to study. Proper training is not available or not affordable. These students cannot compete with those who get good trainers. This is an attempt to help these students with proper training. This application is intended to connect these students with hundreds of college students who have gone through the same training few years prior. The trainee will request help for particular topic, app will connect trainee with appropriate trainer. This app is for young children, hence the trainer is expected to restrict himself/herself to the topic and don't do any mischief. App will create an online meet for trainer and trainee and record the audio for analysis. This audio will be then analyzed for maintaining decent conversation.
