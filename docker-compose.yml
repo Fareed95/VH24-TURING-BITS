@@ -13,7 +13,7 @@ services:
     tty: true
     restart: always
     networks:
-      - nutri-scan
+      - Open-Academy
     command: ["sh", "-c", "npm run dev"]
     # healthcheck:
     #   test: ["CMD", "curl", "-f", "http://localhost:7500"]
@@ -31,10 +31,10 @@ services:
     ports:
       - "8000:8000"
     networks:
-      - nutri-scan
+      - Open-Academy
     depends_on:
       - nextjs
 
 networks:
-  nutri-scan:
+  Open-Academy:
     driver: bridge
