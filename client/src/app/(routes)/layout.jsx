@@ -7,7 +7,7 @@ export default function RootLayout({children}) {
   const Getuserinfo = async () => {
     const token = localStorage.getItem('authToken');
     try {
-        const response = await fetch('https://nutriscan-1ahz.onrender.com/api/user', 
+        const response = await fetch('https://nutriscan-1ahz.onrender.com/api/user',
         {
             method: 'GET',
             headers: {
@@ -16,33 +16,33 @@ export default function RootLayout({children}) {
             },
             credentials: 'include',
           }
-          
+
           );
       if (!response.ok) {
-        
+
         throw new Error('Failed to fetch user info'); // Handle error properly
-        
+
       }
       if (response.ok){
         const result = await response.json();
-  
+
       contextsetIsLoggedIn(true)
       contextsetEmail(result.email)
       contextsetName(result.name)
       toast({
         title: "Successfully Logged in",
         // description: result?.message,
-  
+
       });
       }
-      
+
 
     } catch (error) {
       console.error("Error fetching user info:", error);
     }
-   
+
   };
-  // Getuserinfo()
+  Getuserinfo()
   return (
 
       <main>
@@ -50,6 +50,6 @@ export default function RootLayout({children}) {
           {children}
         </div>
       </main>
-    
+
   );
 }

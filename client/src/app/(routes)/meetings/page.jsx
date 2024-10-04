@@ -32,7 +32,7 @@ const router =useRouter()
 socket.emit("room:join", { name, room });
 
     }
-    
+
   }, [name, room, socket]);
 
   useEffect(() => {
@@ -46,16 +46,16 @@ socket.emit("room:join", { name, room });
    const handleJoinRoom = useCallback((data) => {
     console.log(data);
   }, [name, room, socket]);
-    
+
 
   const JoinMeet=()=>{
 router.push(`/VideoCall/${room}`)
   }
-         
-   
-  
-    
- 
+
+
+
+
+
 
 
   return (
@@ -72,17 +72,17 @@ router.push(`/VideoCall/${room}`)
         Already have an appointment !
       </p>
     <div className="flex justify-center w-full mt-2">
-    
+
       <button className="p-[3px] relative mx-auto max-w-4xl" onClick={JoinMeet}>
         <div className="absolute inset-0 bg-gradient-to-r from-[#525252] to-[#868686] rounded-lg" />
         <div className="px-8 py-2 bg-black rounded-[6px] relative group transition duration-200 text-white hover:bg-transparent">
-          JOIN THE MEETING 
+          JOIN THE MEETING
         </div>
       </button>
     </div>
 <div className="m-12"></div>
   </div>
-  
+
   );
 }
 

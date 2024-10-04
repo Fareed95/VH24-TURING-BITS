@@ -1,10 +1,11 @@
 "use client";
 import { cn } from "@/app/libs/utils";
-
+import Link from "next/link";
 function Card() {
   return (
     <div className="flex flex-wrap justify-evenly w-full">
       <div className="max-w-xs w-full sm:w-1/2 lg:w-1/3 p-2">
+      <Link href='/JEE-Teachers'>
         <div
           className={cn(
             "group w-full cursor-pointer overflow-hidden relative card h-96 rounded-md shadow-xl mx-auto flex flex-col justify-end p-4 border border-transparent dark:border-neutral-800",
@@ -24,9 +25,11 @@ function Card() {
             </p>
           </div>
         </div>
+        </Link>
       </div>
 
       <div className="max-w-xs w-full sm:w-1/2 lg:w-1/3 p-2">
+      <Link href='/NEET-Teachers'>
         <div
           className={cn(
             "group w-full cursor-pointer overflow-hidden relative card h-96 rounded-md shadow-xl mx-auto flex flex-col justify-end p-4 border border-transparent dark:border-neutral-800",
@@ -46,9 +49,12 @@ function Card() {
             </p>
           </div>
         </div>
+        </Link>
       </div>
 
       <div className="max-w-xs w-full sm:w-1/2 lg:w-1/3 p-2">
+      <Link href='/CET-Teachers'>
+
         <div
           className={cn(
             "group w-full cursor-pointer overflow-hidden relative card h-96 rounded-md shadow-xl mx-auto flex flex-col justify-end p-4 border border-transparent dark:border-neutral-800",
@@ -68,6 +74,7 @@ function Card() {
             </p>
           </div>
         </div>
+        </Link>
       </div>
     </div>
   );
