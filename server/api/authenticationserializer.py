@@ -8,7 +8,9 @@ from bot.models import BotResponse
 from bot.serializers import BotResponseSerializer
 from user_profile.serializers import User_profile_serializer
 from testimonials.serializers import testimonial_serializer
-from disease_algorithm.serializers import diabetes_barcode_serializer
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+
 
 class UserSerializer(serializers.ModelSerializer):
     confirm_password = serializers.CharField(write_only=True)
@@ -16,19 +18,17 @@ class UserSerializer(serializers.ModelSerializer):
     botresponse = BotResponseSerializer(many = True, read_only = True)
     user_profile = User_profile_serializer(many = True,read_only = True )
     review = testimonial_serializer(many= True, read_only = True)
-    barcode_response = diabetes_barcode_serializer(many= True, read_only = True)
     class Meta:
         model = User
         fields = [
-            'name', 
+            'name',
             'email',
-            'password', 
-            'confirm_password', 
+            'password',
+            'confirm_password',
             'otp',
             'botresponse',
             'user_profile',
-            'review', 
-            'barcode_response'
+            'review',
             ]
         extra_kwargs = {
             'password': {'write_only': True},
@@ -37,7 +37,7 @@ class UserSerializer(serializers.ModelSerializer):
     def validate(self, data):
         password = data.get('password')
         confirm_password = data.pop('confirm_password', None)
-        
+
         if password != confirm_password:
             raise serializers.ValidationError({"confirm_password": "Passwords do not match."})
 
@@ -52,13 +52,17 @@ class UserSerializer(serializers.ModelSerializer):
         user.set_password(password)
         user.save()
 
+        html_message = render_to_string('emails/otp_email.html', {'otp': otp})
+        plain_message = strip_tags(html_message)
+
         # Send email with OTP
         send_mail(
             'Your OTP Code',
-            f'Your OTP code is {otp}',
-            'nutriscanofficial@gmail.com',  # Replace with your email
+            plain_message,
+            'openacademy44@gmail.com',  # Replace with your email
             [validated_data['email']],
             fail_silently=False,
+            html_message=html_message,
         )
 
         return user
