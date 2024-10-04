@@ -164,7 +164,7 @@ const FileUpload = ({
           </div>
         </div>
       </motion.div>
-      <Barcode_input />
+      {/* <Barcode_input /> */}
     </div>
   );
 };
