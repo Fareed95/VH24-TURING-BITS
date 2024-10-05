@@ -20,12 +20,12 @@ function Footer({ className }: { className?: string }) {
           <div className="space-y-4">
             <h4 className="text-lg font-semibold">Quick Links</h4>
             <ul className="space-y-2">
-              <li><LinkPreview url="https://facebook.com" className="hover:text-white">Nutrition Info</LinkPreview></li>
-              <li><LinkPreview url="https://facebook.com" className="hover:text-white">Allergen Alerts</LinkPreview></li>
-              <li><LinkPreview url="https://facebook.com" className="hover:text-white">Dietary Suitability</LinkPreview></li>
-              <li><LinkPreview url="https://facebook.com" className="hover:text-white">Product Scanner</LinkPreview></li>
+              <li><LinkPreview url="https://facebook.com" className="hover:text-white">Home</LinkPreview></li>
+              <li><LinkPreview url="https://facebook.com" className="hover:text-white">Discover</LinkPreview></li>
+              <li><LinkPreview url="https://facebook.com" className="hover:text-white">Resources</LinkPreview></li>
+              <li><LinkPreview url="https://facebook.com" className="hover:text-white">Authentication</LinkPreview></li>
               <li><LinkPreview url="https://facebook.com" className="hover:text-white">Blog</LinkPreview></li>
-              <li><LinkPreview url="https://facebook.com" className="hover:text-white">Recipes</LinkPreview></li>
+              <li><LinkPreview url="https://facebook.com" className="hover:text-white">Reviews</LinkPreview></li>
             </ul>
           </div>
 
@@ -56,7 +56,7 @@ function Footer({ className }: { className?: string }) {
       </div>
 
 
- 
+
 
     </footer>
   );
