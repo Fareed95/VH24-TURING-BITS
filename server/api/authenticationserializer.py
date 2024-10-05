@@ -77,6 +77,7 @@ class Trainer_Serializer(serializers.ModelSerializer):
             'botresponse',
             'user_profile',
             'review',
+            'trainer',
             'domain',
             'questions',  # Add questions here
         ]
