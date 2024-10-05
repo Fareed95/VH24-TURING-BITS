@@ -12,6 +12,10 @@
   },
   "aliases": {
     "components": "@/components",
+<<<<<<< HEAD
     "utils": "@/app/libs/utils"
+=======
+    "utils": "@/lib/utils"
+>>>>>>> origin/main
   }
 }

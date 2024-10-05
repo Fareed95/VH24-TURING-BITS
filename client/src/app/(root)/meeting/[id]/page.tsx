@@ -1,5 +1,5 @@
 'use client';
-import {useUserContext} from '@/app/context/Userinfo'
+import useUserContext from '@/app/context/Userinfo';
 import { useState } from 'react';
 // import { useUser } from '@clerk/nextjs';
 import { StreamCall, StreamTheme } from '@stream-io/video-react-sdk';
