@@ -1,5 +1,9 @@
 "use client"
+<<<<<<< HEAD
 
+=======
+import { Quest } from '@/app/components/Quests'
+>>>>>>> 5986c0f (frontend ListQuest Exams marked)
 import Image from "next/image";
 import React, { useEffect, useId, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -31,6 +35,7 @@ function page() {
   return (
     <div className=' flex flex-col justify-center items-center'>
     <div>
+<<<<<<< HEAD
              <p className="text-6xl lg:text-7xl font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-600 py-4 sm:pb-10 pt-[20vh]">
     Teacher for JEE
 </p>
@@ -185,6 +190,13 @@ function page() {
     <p className="text-4xl lg:text-5xl font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-600 ">
     Chemistry
 </p>
+=======
+             <p className="text-6xl lg:text-7xl font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-600 py-4 sm:pb-4 pt-[20vh]">
+    Teacher for NEET
+</p>
+    </div>
+    <div>
+>>>>>>> 5986c0f (frontend ListQuest Exams marked)
     <>
       <AnimatePresence>
         {active && typeof active === "object" && (
@@ -319,6 +331,7 @@ function page() {
 
     </div>
 
+<<<<<<< HEAD
 
 
     <div>
@@ -459,6 +472,8 @@ function page() {
 
     </div>
     </div>
+=======
+>>>>>>> 5986c0f (frontend ListQuest Exams marked)
 </div>
   )
 }
@@ -560,4 +575,7 @@ const cards = [
     },
   ];
 export default page
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5986c0f (frontend ListQuest Exams marked)
