@@ -10,14 +10,14 @@ from watchdog.events import FileSystemEventHandler
 
 MP3_FOLDER = "mp3_files"
 WAV_FOLDER = "wav_files"
+LOGS_FOLDER = "logs"
 
 os.makedirs(MP3_FOLDER, exist_ok=True)
 os.makedirs(WAV_FOLDER, exist_ok=True)
+os.makedirs(LOGS_FOLDER, exist_ok=True)
 
 # Abusive words
-ABUSIVE_WORDS = {'red', 'green', 'blue', 'fuck', 'stupid',}
-
-TOTAL_DURATION = 120 # No. of SECONDS OF THE APP
+ABUSIVE_WORDS = {'red', 'green', 'blue', 'fuck', 'stupid'}
 
 # -------------------- Audio Processing --------------------
 
@@ -59,6 +59,9 @@ def find_abusive_words(text):
 
 def process_wav_file(wav_path):
     print(f"Processing '{wav_path}'")
+    audio = AudioSegment.from_wav(wav_path)
+    actual_duration = len(audio) / 1000.0  # Getting the duration in seconds
+
     transcribed_text = transcribe_audio(wav_path)
     if not transcribed_text:
         print("No transcription available.")
@@ -70,22 +73,22 @@ def process_wav_file(wav_path):
 
     words_list = transcribed_text.split()
     words_count = len(words_list)
-    time_per_word = TOTAL_DURATION / words_count if words_count > 0 else 0
+    time_per_word = actual_duration / words_count if words_count > 0 else 0
 
     # Compute timestamps of SUSPECTED ABUSE
     timestamps = []
     for word, index in abusive_timestamps:
         timestamp = index * time_per_word
-        timestamps.append(timestamp)
+        timestamps.append((word, timestamp))
         print(f"Abusive word '{word}' found at {timestamp:.2f} seconds.")
 
     if timestamps:
         base_name = os.path.splitext(os.path.basename(wav_path))[0]
         txt_filename = f"{base_name}.txt"
-        txt_path = os.path.join(WAV_FOLDER, txt_filename)
+        txt_path = os.path.join(LOGS_FOLDER, txt_filename)
         with open(txt_path, 'w') as f:
-            for timestamp in timestamps:
-                f.write(f"{timestamp:.2f}\n")
+            for word, timestamp in timestamps:
+                f.write(f"{word} {timestamp:.2f}\n")
         print(f"Timestamps saved to '{txt_path}'")
     else:
         print("No abusive words found.")
