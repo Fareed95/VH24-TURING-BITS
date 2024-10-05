@@ -1,10 +1,18 @@
 "use client";
 import { cn } from "@/app/libs/utils";
+<<<<<<< HEAD
+import Link from "next/link";
+=======
 
+>>>>>>> origin/main
 function Card() {
   return (
     <div className="flex flex-wrap justify-evenly w-full">
       <div className="max-w-xs w-full sm:w-1/2 lg:w-1/3 p-2">
+<<<<<<< HEAD
+      <Link href='/JEE-Teachers'>
+=======
+>>>>>>> origin/main
         <div
           className={cn(
             "group w-full cursor-pointer overflow-hidden relative card h-96 rounded-md shadow-xl mx-auto flex flex-col justify-end p-4 border border-transparent dark:border-neutral-800",
@@ -24,9 +32,17 @@ function Card() {
             </p>
           </div>
         </div>
+<<<<<<< HEAD
+        </Link>
       </div>
 
       <div className="max-w-xs w-full sm:w-1/2 lg:w-1/3 p-2">
+      <Link href='/NEET-Teachers'>
+=======
+      </div>
+
+      <div className="max-w-xs w-full sm:w-1/2 lg:w-1/3 p-2">
+>>>>>>> origin/main
         <div
           className={cn(
             "group w-full cursor-pointer overflow-hidden relative card h-96 rounded-md shadow-xl mx-auto flex flex-col justify-end p-4 border border-transparent dark:border-neutral-800",
@@ -46,9 +62,18 @@ function Card() {
             </p>
           </div>
         </div>
+<<<<<<< HEAD
+        </Link>
       </div>
 
       <div className="max-w-xs w-full sm:w-1/2 lg:w-1/3 p-2">
+      <Link href='/CET-Teachers'>
+
+=======
+      </div>
+
+      <div className="max-w-xs w-full sm:w-1/2 lg:w-1/3 p-2">
+>>>>>>> origin/main
         <div
           className={cn(
             "group w-full cursor-pointer overflow-hidden relative card h-96 rounded-md shadow-xl mx-auto flex flex-col justify-end p-4 border border-transparent dark:border-neutral-800",
@@ -68,6 +93,10 @@ function Card() {
             </p>
           </div>
         </div>
+<<<<<<< HEAD
+        </Link>
+=======
+>>>>>>> origin/main
       </div>
     </div>
   );

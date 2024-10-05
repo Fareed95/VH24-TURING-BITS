@@ -20,10 +20,17 @@ function Page() {
 
   return (
     <div className='flex items-center flex-col '>
+<<<<<<< HEAD
+      <p className="text-6xl lg:text-7xl font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-600 py-4 sm:pb-4 pt-[20vh]">
+        Ask A Question
+      </p>
+      <div className='flex '>
+=======
       {/* Question input */}
       <div className='flex justify-evenly'>
+>>>>>>> origin/main
       <LabelInputContainer className="w-[40vw] ">
-            
+
             <Input
               id="question"
               placeholder="Ask A Question"
@@ -33,13 +40,17 @@ function Page() {
               className='h-[10vh]'
             />
           </LabelInputContainer>
-      
+
 
       {/* Domain select */}<div className='flex flex-col'>
          <label htmlFor="domain">Domain:</label>
       <select id="domain" value={domain} onChange={handleDomainChange} className={cn(
-            `flex h-10 w-[40vw] border-none bg-gray-50 dark:bg-zinc-800 text-black dark:text-white shadow-input rounded-md px-3 py-2 text-sm  file:border-0 file:bg-transparent 
-          file:text-sm file:font-medium placeholder:text-neutral-400 dark:placeholder-text-neutral-600 
+<<<<<<< HEAD
+            `flex h-10  border-none bg-gray-50 dark:bg-zinc-800 text-black dark:text-white shadow-input rounded-md px-3 py-2 text-sm  file:border-0 file:bg-transparent
+=======
+            `flex h-10 w-[40vw] border-none bg-gray-50 dark:bg-zinc-800 text-black dark:text-white shadow-input rounded-md px-3 py-2 text-sm  file:border-0 file:bg-transparent
+>>>>>>> origin/main
+          file:text-sm file:font-medium placeholder:text-neutral-400 dark:placeholder-text-neutral-600
           focus-visible:outline-none focus-visible:ring-[2px]  focus-visible:ring-neutral-400 dark:focus-visible:ring-neutral-600
            disabled:cursor-not-allowed disabled:opacity-50
            dark:shadow-[0px_0px_1px_1px_var(--neutral-700)]
@@ -51,9 +62,9 @@ function Page() {
         <option value="biology">Biology</option>
       </select>
       </div>
-     
+
       </div>
-      
+
       <FileUploadComponent></FileUploadComponent>
     </div>
   );

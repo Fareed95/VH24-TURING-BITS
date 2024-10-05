@@ -23,9 +23,16 @@ import { Label } from "./ui/label";
 
 
   const Getuserinfo = async () => {
+<<<<<<< HEAD
+    console.log("Getuserinfo")
     const token = localStorage.getItem('authToken');
     try {
-        const response = await fetch('https://nutriscan-1ahz.onrender.com/api/user', 
+        const response = await fetch('http://localhost:8000/api/user',
+=======
+    const token = localStorage.getItem('authToken');
+    try {
+        const response = await fetch('https://nutriscan-1ahz.onrender.com/api/user',
+>>>>>>> origin/main
         {
             method: 'GET',
             headers: {
@@ -34,12 +41,22 @@ import { Label } from "./ui/label";
             },
             credentials: 'include',
           }
-          
+<<<<<<< HEAD
+
+          );
+          console.log(token)
+      if (!response.ok) {
+
+        throw new Error('Failed to fetch user info'); // Handle error properly
+
+=======
+
           );
       if (!response.ok) {
-        
+
         throw new Error('Failed to fetch user info'); // Handle error properly
-        
+
+>>>>>>> origin/main
       }
       if (response.ok){
         const result = await response.json();
@@ -49,15 +66,27 @@ import { Label } from "./ui/label";
       contextsetName(result.name)
       toast({
         title: "You are Successfully Logged In",
-       
-      });         
+<<<<<<< HEAD
+
+      });
       router.push("/")
       }
-      
+
     } catch (error) {
       console.error("Error fetching user info:", error);
     }
-   
+
+=======
+
+      });
+      router.push("/")
+      }
+
+    } catch (error) {
+      console.error("Error fetching user info:", error);
+    }
+
+>>>>>>> origin/main
   };
 
 
@@ -66,7 +95,11 @@ import { Label } from "./ui/label";
     e.preventDefault();
 
     try {
+<<<<<<< HEAD
+      const response = await fetch('http://localhost:8000/api/login', {
+=======
       const response = await fetch('https://nutriscan-1ahz.onrender.com/api/login', {
+>>>>>>> origin/main
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -85,7 +118,11 @@ import { Label } from "./ui/label";
       const result = await response.json();
       if (response.ok) {
 
-          
+<<<<<<< HEAD
+
+=======
+
+>>>>>>> origin/main
         localStorage.setItem('authToken', result.jwt);
         Getuserinfo()
   }
@@ -97,17 +134,29 @@ import { Label } from "./ui/label";
     }
 
     // Update loginInfo context after form submission
-    
+<<<<<<< HEAD
+
   };
 
 
-  
+
+=======
+
+  };
+
+
+
+>>>>>>> origin/main
 
 
   return (
     <div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black">
       <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">
+<<<<<<< HEAD
+        Login to NutriScan
+=======
         Login to Open-Academy
+>>>>>>> origin/main
       </h2>
       <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300">
         Welcome back!
@@ -134,7 +183,11 @@ import { Label } from "./ui/label";
         <Link href='/ForgotPassword'>
         <button
           className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
-          
+<<<<<<< HEAD
+
+=======
+
+>>>>>>> origin/main
         >
           Forgot Password &rarr;
           <BottomGradient />
@@ -164,7 +217,11 @@ import { Label } from "./ui/label";
             </span>
             <BottomGradient />
           </button>
-          
+<<<<<<< HEAD
+
+=======
+
+>>>>>>> origin/main
         </div>
       </form>
     </div>
