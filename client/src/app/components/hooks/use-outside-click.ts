@@ -1,10 +1,14 @@
 import React, { useEffect } from "react";
 
 <<<<<<< HEAD
+<<<<<<< HEAD
  const useOutsideClick = (
 =======
 export const useOutsideClick = (
 >>>>>>> origin/main
+=======
+ const useOutsideClick = (
+>>>>>>> 5986c0f (frontend ListQuest Exams marked)
   ref: React.RefObject<HTMLDivElement>,
   callback: Function
 ) => {
@@ -26,6 +30,10 @@ export const useOutsideClick = (
   }, [ref, callback]);
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 export default useOutsideClick;
 =======
 >>>>>>> origin/main
+=======
+export default useOutsideClick;
+>>>>>>> 5986c0f (frontend ListQuest Exams marked)

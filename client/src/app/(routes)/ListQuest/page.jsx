@@ -1,9 +1,9 @@
 import React from 'react'
-import { Coatches } from '@/app/components/Coatches'
+import { Quest } from '@/app/components/Quests'
 function page() {
   return (
-    <div>
-        <Coatches></Coatches>
+    <div className='pt-[20vh]'>
+        <Quest></Quest>
 
     </div>
   )
